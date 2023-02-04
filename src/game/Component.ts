@@ -12,7 +12,7 @@ export default class Component {
 		(this.gameObject as any)[this.componentReference] = this;
 		const startObservable = this.gameObject
 			.getScene()
-			.onBeforeRenderObservable.addOnce(() => this.tryOnStart);
+			.onBeforeRenderObservable.addOnce(() => this.tryOnStart());
 		const updateObservable = this.gameObject
 			.getScene()
 			.onBeforeRenderObservable.add(() => this.tryOnUpdate());
