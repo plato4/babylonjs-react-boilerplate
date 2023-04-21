@@ -1,5 +1,4 @@
 import * as BABYLON from "babylonjs";
-import { Nullable, Observable, Scene } from "babylonjs";
 
 export default class Component {
 	public readonly gameObject: BABYLON.Node;
