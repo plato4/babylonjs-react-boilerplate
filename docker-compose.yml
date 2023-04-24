@@ -4,7 +4,7 @@ services:
     image: node:19-alpine3.16
     container_name: babylonjs-game
     ports:
-      - 3000:3000
+      - 5173:5173
     volumes:
       - ./:/home/node/app
     working_dir: /home/node/app
