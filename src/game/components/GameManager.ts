@@ -5,8 +5,8 @@ import * as BABYLON from "babylonjs";
 
 export class GameManager extends Component {
 	public game: Game;
-	constructor(gameObject: BABYLON.Node, game: Game) {
-		super(gameObject, "gamemanager");
+	constructor(node: BABYLON.Node, game: Game) {
+		super("gamemanager", node);
 		this.game = game;
 		this.boxScene();
 	}
@@ -15,10 +15,10 @@ export class GameManager extends Component {
 		const box = BABYLON.MeshBuilder.CreateBox(
 			"default_box",
 			{ width: 0.1, height: 0.1, depth: 0.1 },
-			this.gameObject.getScene()
+			this.node.getScene()
 		);
 
-		const camera = this.gameObject.getScene().getCameraByName("default_camera");
+		const camera = this.node.getScene().getCameraByName("default_camera");
 
 		if (camera) camera.attachControl(this.game.canvas, true);
 		const light = new BABYLON.HemisphericLight(
@@ -26,6 +26,6 @@ export class GameManager extends Component {
 			new BABYLON.Vector3(1, 1, 0),
 			this.game.scene
 		);
-		new Rotate(box, "Rotate");
+		new Rotate("Rotate", box);
 	}
 }

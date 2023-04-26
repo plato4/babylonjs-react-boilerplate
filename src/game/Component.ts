@@ -1,26 +1,26 @@
 import * as BABYLON from "babylonjs";
 
 export default class Component {
-	public readonly gameObject: BABYLON.Node;
-	private readonly componentReference: string;
+	public readonly node: BABYLON.Node;
+	private readonly name: string;
 
-	constructor(gameobject: BABYLON.Node, componentReference: string) {
-		this.gameObject = gameobject;
-		this.componentReference = componentReference;
+	constructor(name: string, node: BABYLON.Node) {
+		this.node = node;
+		this.name = name;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		(this.gameObject as any)[this.componentReference] = this;
-		const startObservable = this.gameObject
+		(this.node as any)[this.name] = this;
+		const startObservable = this.node
 			.getScene()
 			.onBeforeRenderObservable.addOnce(() => this.tryOnStart());
-		const updateObservable = this.gameObject
+		const updateObservable = this.node
 			.getScene()
 			.onBeforeRenderObservable.add(() => this.tryOnUpdate());
-		this.gameObject.onDisposeObservable.add(() => {
-			const scene = this.gameObject.getScene();
+		this.node.onDisposeObservable.add(() => {
+			const scene = this.node.getScene();
 			scene.onBeforeRenderObservable.remove(updateObservable);
 			scene.onBeforeRenderObservable.remove(startObservable);
 			this.tryCall(this.onDestroy);
-			delete (this.gameObject as any)[this.componentReference];
+			delete (this.node as any)[this.name];
 		});
 	}
 
@@ -42,7 +42,7 @@ export default class Component {
 	public onDestroy(): void {}
 
 	public destroy(): void {
-		this.gameObject.dispose();
+		this.node.dispose();
 	}
 
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -52,12 +52,7 @@ export default class Component {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (e: any) {
 			console.log(
-				"(" +
-					this.gameObject.name +
-					":" +
-					this.componentReference +
-					") Error: " +
-					e.stack
+				"(" + this.node.name + ":" + this.name + ") Error: " + e.stack
 			);
 		}
 	}
