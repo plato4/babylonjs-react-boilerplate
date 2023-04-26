@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Component from "../Component";
 import { Game } from "../Game";
 import { Rotate } from "./Rotate";
 import * as BABYLON from "babylonjs";
 
 export class GameManager extends Component {
+	public onStart(): void {}
+	public onUpdate(): void {}
+	public onDestroy(): void {}
 	public game: Game;
 	constructor(node: BABYLON.Node, game: Game) {
 		super("gamemanager", node);

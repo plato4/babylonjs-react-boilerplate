@@ -1,6 +1,6 @@
 import * as BABYLON from "babylonjs";
 
-export default class Component {
+export default abstract class Component {
 	public readonly node: BABYLON.Node;
 	private readonly name: string;
 
@@ -23,29 +23,24 @@ export default class Component {
 			delete (this.node as any)[this.name];
 		});
 	}
-
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	public onStart(): void {}
+	public abstract onStart(): void;
 
 	private tryOnStart(): void {
 		this.tryCall(this.onStart);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	public onUpdate(): void {}
+	public abstract onUpdate(): void;
 
 	private tryOnUpdate(): void {
 		this.tryCall(this.onUpdate);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	public onDestroy(): void {}
+	public abstract onDestroy(): void;
 
 	public destroy(): void {
 		this.node.dispose();
 	}
 
-	// eslint-disable-next-line @typescript-eslint/ban-types
 	private tryCall(f: () => void) {
 		try {
 			f.bind(this)();
