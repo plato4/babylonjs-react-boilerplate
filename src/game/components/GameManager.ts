@@ -5,15 +5,16 @@ import { Rotate } from "./Rotate";
 import * as BABYLON from "babylonjs";
 
 export class GameManager extends Component {
-	public onStart(): void {}
-	public onUpdate(): void {}
-	public onDestroy(): void {}
 	public game: Game;
 	constructor(node: BABYLON.Node, game: Game) {
 		super("gamemanager", node);
 		this.game = game;
 		this.boxScene();
 	}
+
+	public onStart(): void {}
+	public onUpdate(): void {}
+	public onDestroy(): void {}
 
 	public boxScene() {
 		const box = BABYLON.MeshBuilder.CreateBox(
