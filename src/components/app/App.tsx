@@ -4,63 +4,50 @@ import "../../css/bit.css";
 import { createContext, useContext, useState } from "react";
 import React from "react";
 
-import Menu from "../menu/Menu";
 import GameCanvas from "../gamecanvas/GameCanvas";
+import Ui from "../ui/Ui";
 
-import { Game } from "../../game/Game";
+import { Game } from "../../engine/Game";
 
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 export type GameContextType = {
-	game: Game | undefined;
-	setGame: (game: Game) => void;
+  game: Game | undefined;
+  setGame: (game: Game) => void;
 };
 
 export const GameContext = createContext<GameContextType>({
-	game: undefined,
-	setGame: (game) => console.warn("no game provider"),
+  game: undefined,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  setGame: (_game) => console.warn("no game provider"),
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGameContext = () => useContext(GameContext);
 
 const App: React.FC = () => {
-	const [windowTooSmall, setWindowTooSmall] = useState(false);
-	const [game, setGame] = useState<Game>();
-	const [started, setStarted] = useState(false);
-
-	const onResize = () =>
-		setWindowTooSmall(
-			document.documentElement.clientHeight <= 600 ||
-				document.documentElement.clientWidth <= 840
-		);
-
-	window.addEventListener("resize", onResize);
-
-	return (
-		<div>
-			{started ? (
-				<div>
-					<GameContext.Provider value={{ game, setGame }}>
-						<div className="game-layer-container">
-							<GameCanvas />
-						</div>
-						<div className="ui-layer-container">
-							<Menu />
-						</div>
-					</GameContext.Provider>
-				</div>
-			) : (
-				<div className="ui-layer-container" onClick={() => setStarted(true)}>
-					<h1 style={{ margin: "auto" }}>CLICK TO START!</h1>
-				</div>
-			)}
-			{windowTooSmall ? (
-				<div className="window-too-small">The window is too small.</div>
-			) : (
-				<></>
-			)}
-		</div>
-	);
+  const [game, setGame] = useState<Game>();
+  const [started, setStarted] = useState(false);
+  return (
+    <div>
+      {started ? (
+        <div>
+          <GameContext.Provider value={{ game, setGame }}>
+            <div className="game-layer-container">
+              <GameCanvas />
+            </div>
+            <div className="ui-layer-container">
+              <Ui />
+            </div>
+          </GameContext.Provider>
+        </div>
+      ) : (
+        <div className="prompt-container" onClick={() => setStarted(true)}>
+          <h1 style={{ margin: "auto" }}>CLICK TO START!</h1>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default App;
