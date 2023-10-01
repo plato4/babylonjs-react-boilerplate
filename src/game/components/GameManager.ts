@@ -19,6 +19,9 @@ export class GameManager extends Component {
     );
     box.position.z = 10;
     new Rotate(box);
+
+    const component = Component.getComponents<Rotate>(box);
+    console.log(component);
   }
   public onUpdate(): void {}
   public onDestroy(): void {}
