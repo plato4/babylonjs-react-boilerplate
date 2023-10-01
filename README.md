@@ -6,6 +6,6 @@ A BabylonJS and ReactJS boilerplate for 3d game development.
 
   new Rotate(node)
 
-  Component.getComponents<Rotate>(node)
+  Component.getComponents < Rotate > (node)
 
-  Component.getComponentsInChildren<Rotate>(node)
+  Component.getComponentsInChildren < Rotate > (node)
