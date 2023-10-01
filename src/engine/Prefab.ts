@@ -49,7 +49,7 @@ const clonePrefab = (prefab: IPrefab): IPrefab => {
 };
 
 const createPrefab = async (
-  parent: BABYLON.Node | BABYLON.Scene | undefined,
+  parent: BABYLON.TransformNode | BABYLON.Scene | undefined,
   prefab: IPrefab,
   tasks: ITask[]
 ): Promise<BABYLON.TransformNode | undefined> => {
@@ -60,7 +60,7 @@ const createPrefab = async (
   else root = new BABYLON.TransformNode("", sceneParent);
 
   if (!root) return undefined;
-  if (parent instanceof BABYLON.Node) root.parent = parent;
+  if (parent instanceof BABYLON.TransformNode) root.parent = parent;
   root.name = prefab.name;
   root.position = prefab.position ?? BABYLON.Vector3.Zero();
   root.rotation = prefab.rotation ?? BABYLON.Vector3.Zero();
