@@ -6,22 +6,26 @@ import { Rotate } from "./Rotate";
 
 export class GameManager extends Component {
   public game: Game;
+  public static box?: BABYLON.TransformNode;
   constructor(game: Game, node: BABYLON.Node) {
     super(node);
     this.game = game;
   }
 
+  public static toggleRotation(): void {
+    if (GameManager.box) {
+      Component.getComponents<Rotate>(GameManager.box).pop()?.toggle();
+    }
+  }
+
   public onStart(): void {
-    const box = BABYLON.MeshBuilder.CreateBox(
+    GameManager.box = BABYLON.MeshBuilder.CreateBox(
       "default_box",
       { width: 1, height: 1, depth: 1 },
       this.node.getScene()
     );
-    box.position.z = 10;
-    new Rotate(box);
-
-    const component = Component.getComponents<Rotate>(box);
-    console.log(component);
+    GameManager.box.position.z = 10;
+    new Rotate(GameManager.box);
   }
   public onUpdate(): void {}
   public onDestroy(): void {}

@@ -3,10 +3,15 @@ import * as BABYLON from "babylonjs";
 import Component from "../../engine/Component";
 
 export class Rotate extends Component {
+  public enabled = true;
+  public toggle(): void {
+    this.enabled = !this.enabled;
+  }
+
   public onStart(): void {}
   public onDestroy(): void {}
   public onUpdate() {
-    if (this.node instanceof BABYLON.TransformNode) {
+    if (this.enabled && this.node instanceof BABYLON.TransformNode) {
       this.node.rotate(
         BABYLON.Vector3.One(),
         this.node.getScene().deltaTime * 0.001
