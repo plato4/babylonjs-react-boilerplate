@@ -3,29 +3,29 @@ import * as BABYLON from "babylonjs";
 import Component from "../../engine/Component";
 import { Game } from "../../engine/Game";
 import { Rotate } from "./Rotate";
+import { createPrefabAsync } from "../../engine/Prefab";
+import { prefabCube } from "../prefabs/prefabCube";
 
 export class GameManager extends Component {
   public game: Game;
-  public static box?: BABYLON.TransformNode;
+  public static cube?: BABYLON.TransformNode;
   constructor(game: Game, node: BABYLON.Node) {
     super(node);
     this.game = game;
   }
 
   public static toggleRotation(): void {
-    if (GameManager.box) {
-      Component.getComponents<Rotate>(GameManager.box).pop()?.toggle();
+    if (GameManager.cube) {
+      Component.getComponentsInChildren<Rotate>(GameManager.cube).forEach((r) =>
+        r.toggle()
+      );
     }
   }
 
   public onStart(): void {
-    GameManager.box = BABYLON.MeshBuilder.CreateBox(
-      "default_box",
-      { width: 1, height: 1, depth: 1 },
-      this.node.getScene()
+    createPrefabAsync(this.node, prefabCube).then(
+      (n) => (GameManager.cube = n)
     );
-    GameManager.box.position.z = 10;
-    new Rotate(GameManager.box);
   }
   public onUpdate(): void {}
   public onDestroy(): void {}
