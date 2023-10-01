@@ -77,7 +77,7 @@ export class Game extends BABYLON.Engine {
     scene: BABYLON.Scene,
     gameManager: typeof GameManager
   ) {
-    const node = new BABYLON.Node("default_gamemanager", scene);
+    const node = new BABYLON.TransformNode("default_gamemanager", scene);
     new gameManager(this, node);
   }
 }

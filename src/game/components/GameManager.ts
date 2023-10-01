@@ -8,15 +8,15 @@ import { prefabCube } from "../prefabs/prefabCube";
 
 export class GameManager extends Component {
   public game: Game;
-  public static cube?: BABYLON.TransformNode;
+  public cube?: BABYLON.TransformNode;
   constructor(game: Game, node: BABYLON.Node) {
     super(node);
     this.game = game;
   }
 
-  public static toggleRotation(): void {
-    if (GameManager.cube) {
-      Component.getComponentsInChildren<Rotate>(GameManager.cube).forEach((r) =>
+  public toggleRotation(): void {
+    if (this.cube) {
+      Component.getComponentsInChildren<Rotate>(this.cube).forEach((r) =>
         r.toggle()
       );
     }
@@ -24,7 +24,7 @@ export class GameManager extends Component {
 
   public onStart(): void {
     createPrefabAsync(this.node, prefabCube).then(
-      (n) => (GameManager.cube = n)
+      (n) => (this.cube = n)
     );
   }
   public onUpdate(): void {}
