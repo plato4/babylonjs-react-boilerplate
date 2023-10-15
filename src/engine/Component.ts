@@ -2,31 +2,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as BABYLON from "babylonjs";
 
-export default class Component {
-  public readonly node: BABYLON.Node;
+export default class Component<T extends BABYLON.Node> {
+  public readonly node: T;
   private startObservable!: BABYLON.Nullable<BABYLON.Observer<BABYLON.Scene>>;
   private updateObservable!: BABYLON.Nullable<BABYLON.Observer<BABYLON.Scene>>;
   private disposeObservable!: BABYLON.Nullable<BABYLON.Observer<BABYLON.Node>>;
 
-  public static getComponents<T extends Component>(
+  public static getComponents<T extends Component<BABYLON.Node>>(
     node: BABYLON.Node,
-    predicate?: (component: Component) => component is T
+    predicate?: (component: Component<BABYLON.Node>) => component is T
   ): T[] {
-    let components: Component[] | undefined = (node as any).components;
+    let components: Component<BABYLON.Node>[] | undefined = (node as any)
+      .components;
     if (components) {
       components = components.filter((c) => !predicate || predicate(c));
     }
     return components ? (components as T[]) : [];
   }
 
-  public static getComponentsInChildren<T extends Component>(
+  public static getComponentsInChildren<T extends Component<BABYLON.Node>>(
     node: BABYLON.Node
   ): T[] {
     const matchingComponents: T[] = [];
 
     const processNode = (currentNode: BABYLON.Node, isRootNode: boolean) => {
       if (!isRootNode) {
-        const components: Component[] | undefined =
+        const components: Component<BABYLON.Node>[] | undefined =
           Component.getComponents<T>(currentNode);
         if (components) matchingComponents.push(...(components as T[]));
       }
@@ -41,7 +42,7 @@ export default class Component {
     return matchingComponents;
   }
 
-  constructor(node: BABYLON.Node) {
+  constructor(node: T) {
     this.node = node;
     this.init();
     this.add();

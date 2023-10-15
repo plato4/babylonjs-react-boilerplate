@@ -5,13 +5,12 @@ import { Game } from "../../engine/Game";
 import { Rotate } from "./Rotate";
 import { createPrefabAsync } from "../../engine/Prefab";
 import { prefabCube } from "../prefabs/prefabCube";
+import { GameManager } from "../../engine/GameManager";
 
-export class GameManager extends Component {
-  public game: Game;
+export class MyGameManager extends GameManager {
   public cube?: BABYLON.TransformNode;
   constructor(game: Game, node: BABYLON.Node) {
-    super(node);
-    this.game = game;
+    super(game, node);
   }
 
   public toggleRotation(): void {
@@ -23,9 +22,7 @@ export class GameManager extends Component {
   }
 
   public onStart(): void {
-    createPrefabAsync(this.node, prefabCube).then(
-      (n) => (this.cube = n)
-    );
+    createPrefabAsync(this.node, prefabCube).then((n) => (this.cube = n));
   }
   public onUpdate(): void {}
   public onDestroy(): void {}

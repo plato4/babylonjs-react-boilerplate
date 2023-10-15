@@ -2,7 +2,7 @@
 import * as BABYLON from "babylonjs";
 import Component from "../../engine/Component";
 
-export class Rotate extends Component {
+export class Rotate extends Component<BABYLON.TransformNode> {
   public enabled = true;
   public toggle(): void {
     this.enabled = !this.enabled;

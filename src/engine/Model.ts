@@ -10,7 +10,7 @@ export interface IModel {
 export const createModel = async (
   scene: BABYLON.Scene | undefined,
   model: IModel
-): Promise<BABYLON.TransformNode | undefined> => {
+): Promise<BABYLON.AbstractMesh | undefined> => {
   try {
     const result = await BABYLON.SceneLoader.ImportMeshAsync(
       model.modelName ?? "",
