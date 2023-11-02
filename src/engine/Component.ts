@@ -12,13 +12,11 @@ export default class Component<T extends BABYLON.Node> {
     node: BABYLON.Node,
     typeConstructor: new (...args: any[]) => T
   ): T[] {
-    let foundComponents: T[] = [];
-    if ((node as any).components) {
-      foundComponents = ((node as any).components as T[]).filter(
-        (c) => c instanceof typeConstructor
-      );
-    }
-    return foundComponents;
+    return (node as any).components
+      ? ((node as any).components as T[]).filter(
+          (c) => c instanceof typeConstructor
+        )
+      : [];
   }
 
   public static getComponentsInChildren<T extends Component<BABYLON.Node>>(
