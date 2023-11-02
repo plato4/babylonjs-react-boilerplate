@@ -18,7 +18,7 @@ export default class Component<T extends BABYLON.Node> {
         (c) => c instanceof typeConstructor
       );
     }
-    return foundComponents as T[];
+    return foundComponents;
   }
 
   public static getComponentsInChildren<T extends Component<BABYLON.Node>>(
@@ -45,7 +45,7 @@ export default class Component<T extends BABYLON.Node> {
 
     return matchingComponents;
   }
-  
+
   constructor(node: T) {
     this.node = node;
     this.init();
