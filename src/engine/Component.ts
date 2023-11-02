@@ -12,12 +12,13 @@ export default class Component<T extends BABYLON.Node> {
     node: BABYLON.Node,
     typeConstructor: new (...args: any[]) => T
   ): T[] {
-    let components: Component<BABYLON.Node>[] | undefined = (node as any)
-      .components;
-    if (components) {
-      components = components.filter((c) => c instanceof typeConstructor);
+    let foundComponents: T[] = [];
+    if ((node as any).components) {
+      foundComponents = ((node as any).components as T[]).filter(
+        (c) => c instanceof typeConstructor
+      );
     }
-    return components ? (components as T[]) : [];
+    return foundComponents as T[];
   }
 
   public static getComponentsInChildren<T extends Component<BABYLON.Node>>(
@@ -28,8 +29,10 @@ export default class Component<T extends BABYLON.Node> {
 
     const processNode = (currentNode: BABYLON.Node, isRootNode: boolean) => {
       if (!isRootNode) {
-        const components: Component<BABYLON.Node>[] | undefined =
-          Component.getComponents(currentNode, typeConstructor);
+        const components: T[] | undefined = Component.getComponents(
+          currentNode,
+          typeConstructor
+        );
         if (components) matchingComponents.push(...(components as T[]));
       }
 
@@ -42,6 +45,7 @@ export default class Component<T extends BABYLON.Node> {
 
     return matchingComponents;
   }
+  
   constructor(node: T) {
     this.node = node;
     this.init();
