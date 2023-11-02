@@ -13,9 +13,9 @@ export default class Component<T extends BABYLON.Node> {
     typeConstructor: new (...args: any[]) => T
   ): T[] {
     return (node as any).components
-      ? ((node as any).components as Component<BABYLON.Node>[]).filter(
+      ? (((node as any).components as Component<BABYLON.Node>[]).filter(
           (c) => c instanceof typeConstructor
-        )
+        ) as T[])
       : [];
   }
 
