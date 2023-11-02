@@ -15,7 +15,7 @@ export class MyGameManager extends GameManager {
 
   public toggleRotation(): void {
     if (this.cube) {
-      Component.getComponentsInChildren<Rotate>(this.cube).forEach((r) =>
+      Component.getComponentsInChildren(this.cube, Rotate).forEach((r) =>
         r.toggle()
       );
     }

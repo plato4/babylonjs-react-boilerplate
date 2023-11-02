@@ -2,10 +2,10 @@ A BabylonJS and ReactJS boilerplate for 3d game development.
 
 - Component system
 
-  new Component(node)
+  class Rotate Extends Component<BABYLON.TransformNode> {}
 
   new Rotate(node)
 
-  Component.getComponents < Rotate > (node)
+  Component.getComponents(node,Rotate)
 
-  Component.getComponentsInChildren < Rotate > (node)
+  Component.getComponentsInChildren(node, Rotate)
