@@ -1,5 +1,5 @@
 import Component from "../../engine/Component";
-import { GameManager } from "../../game/components/GameManager";
+import { MyGameManager } from "../../game/components/GameManager";
 import { useGameContext } from "../app/App";
 import "./ui.css";
 
@@ -18,7 +18,7 @@ const Ui: React.FC = () => {
                 "default_gamemanager"
               );
               if (node)
-                Component.getComponents<GameManager>(node)
+                Component.getComponents(node, MyGameManager)
                   .pop()
                   ?.toggleRotation();
             }
