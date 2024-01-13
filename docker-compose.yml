@@ -8,4 +8,5 @@ services:
     volumes:
       - ./:/home/node/app
     working_dir: /home/node/app
-    command: tail -f /dev/null
+    command: sh -c "npm install && npm run dev"
+    restart: always
