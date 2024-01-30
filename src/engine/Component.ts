@@ -99,8 +99,8 @@ export default class Component<T extends BABYLON.Node> {
   private tryCall(f: () => void) {
     try {
       f.call(this);
-    } catch (error) {
-      console.error(`(${this.node.name}) ERROR: ${error}`);
+    } catch (error: any) {
+      console.error(`(${this.node.name}) ERROR: ${error.stack}`);
     }
   }
 }
