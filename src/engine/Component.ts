@@ -44,11 +44,11 @@ export default class Component<T extends BABYLON.Node> {
     return matchingComponents;
   }
 
-  constructor(node: T) {
+  constructor(node: T, updateHook: boolean) {
     this.node = node;
     this.init();
     this.add();
-    this.hooks();
+    this.hooks(updateHook);
   }
 
   public onStart(): void {}
@@ -67,16 +67,17 @@ export default class Component<T extends BABYLON.Node> {
     (this.node as any).components.push(this);
   }
 
-  private hooks() {
+  private hooks(updateHook: boolean) {
     const scene = this.node.getScene();
 
     this.startObservable = scene.onBeforeRenderObservable.addOnce(() => {
       this.tryCall(this.onStart);
     });
 
-    this.updateObservable = scene.onBeforeRenderObservable.add(() => {
-      this.tryCall(this.onUpdate);
-    });
+    if (updateHook)
+      this.updateObservable = scene.onBeforeRenderObservable.add(() => {
+        this.tryCall(this.onUpdate);
+      });
 
     this.disposeObservable = this.node.onDisposeObservable.add(() => {
       this.destroy();

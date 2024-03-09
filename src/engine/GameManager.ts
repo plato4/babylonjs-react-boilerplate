@@ -7,7 +7,7 @@ export class GameManager extends Component<BABYLON.Node> {
   public game: Game;
 
   constructor(game: Game, node: BABYLON.Node) {
-    super(node);
+    super(node, true);
     this.game = game;
   }
 }

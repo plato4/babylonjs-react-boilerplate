@@ -4,6 +4,11 @@ import Component from "../../engine/Component";
 
 export class Rotate extends Component<BABYLON.TransformNode> {
   public enabled = true;
+
+  constructor(node: BABYLON.TransformNode) {
+    super(node, true);
+  }
+
   public toggle(): void {
     this.enabled = !this.enabled;
   }

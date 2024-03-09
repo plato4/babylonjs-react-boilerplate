@@ -1,7 +1,7 @@
 import * as BABYLON from "babylonjs";
-import { IPrefab } from "../../engine/Prefab";
-import { modelBlock } from "../models/modelBlock";
-import { Rotate } from "../components/Rotate";
+import { IPrefab } from "../engine/Prefab";
+import { modelBlock } from "./Models";
+import { Rotate } from "./components/Rotate";
 
 export const prefabCube: IPrefab = {
   name: "cube",
@@ -22,4 +22,8 @@ export const prefabCube: IPrefab = {
       ],
     },
   ],
+};
+
+export const prefabs = {
+  cube: prefabCube,
 };

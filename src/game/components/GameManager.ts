@@ -4,8 +4,8 @@ import Component from "../../engine/Component";
 import { Game } from "../../engine/Game";
 import { Rotate } from "./Rotate";
 import { createPrefabAsync } from "../../engine/Prefab";
-import { prefabCube } from "../prefabs/prefabCube";
 import { GameManager } from "../../engine/GameManager";
+import { prefabs } from "../Prefabs";
 
 export class MyGameManager extends GameManager {
   public cube?: BABYLON.TransformNode;
@@ -22,7 +22,7 @@ export class MyGameManager extends GameManager {
   }
 
   public onStart(): void {
-    createPrefabAsync(this.node, prefabCube).then((n) => (this.cube = n));
+    createPrefabAsync(this.node, prefabs.cube).then((n) => (this.cube = n));
   }
   public onUpdate(): void {}
   public onDestroy(): void {}
