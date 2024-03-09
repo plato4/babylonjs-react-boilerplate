@@ -17,7 +17,7 @@ interface ITask {
 }
 
 export const createPrefabAsync = async (
-  parent: BABYLON.Node | BABYLON.Scene | undefined,
+  parent: BABYLON.TransformNode | BABYLON.Scene | undefined,
   prefab: IPrefab
 ): Promise<BABYLON.TransformNode | undefined> => {
   const tasks: ITask[] = [];
@@ -49,7 +49,7 @@ const clonePrefab = (prefab: IPrefab): IPrefab => {
 };
 
 const createPrefab = async (
-  parent: BABYLON.Node | BABYLON.Scene | undefined,
+  parent: BABYLON.TransformNode | BABYLON.Scene | undefined,
   prefab: IPrefab,
   tasks: ITask[]
 ): Promise<BABYLON.TransformNode | undefined> => {
