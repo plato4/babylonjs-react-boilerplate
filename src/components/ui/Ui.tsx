@@ -9,25 +9,28 @@ const Ui: React.FC = () => {
   const { game } = useGameContext();
   return (
     <div className="ui">
-      <div className="bit-container menu">
-        <div
-          className="bit-button"
-          onClick={() => {
-            console.log(game);
-            if (game) {
-              const node = game.activeScene.getNodeByName(
-                "default_gamemanager"
-              );
-              if (node)
-                Component.getComponents(node, MyGameManager)
-                  .pop()
-                  ?.toggleRotation();
-            }
-          }}
-        >
-          Click To Toggle Rotation
+      {game ? (
+        <div className="bit-container menu">
+          <div
+            className="bit-button"
+            onClick={() => {
+              if (game) {
+                const node = game.activeScene.getNodeByName(
+                  "default_gamemanager"
+                );
+                if (node)
+                  Component.getComponents(node, MyGameManager)
+                    .pop()
+                    ?.toggleRotation();
+              }
+            }}
+          >
+            Click To Toggle Rotation
+          </div>
         </div>
-      </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };
