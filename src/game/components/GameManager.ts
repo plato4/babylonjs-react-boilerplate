@@ -9,7 +9,7 @@ import { prefabs } from "../Prefabs";
 
 export class MyGameManager extends GameManager {
   public cube?: BABYLON.TransformNode;
-  constructor(game: Game, node: BABYLON.Node) {
+  constructor(game: Game, node: BABYLON.TransformNode) {
     super(game, node);
   }
 
