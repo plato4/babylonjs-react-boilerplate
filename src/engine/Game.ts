@@ -1,13 +1,16 @@
 import * as BABYLON from "babylonjs";
 import { GameManager } from "./GameManager";
 
-export class Game extends BABYLON.Engine /*BABYLON.WebGPUEngine*/ {
+export class Game extends BABYLON.WebGPUEngine {
   public _sceneRegistry: { [name: string]: BABYLON.Scene } = {};
   private _activeScene!: BABYLON.Scene;
-  constructor(canvas: HTMLCanvasElement, gameManager: typeof GameManager) {
+  constructor(canvas: HTMLCanvasElement) {
     console.log("CREATING GAME");
-    super(canvas, true /*{ antialias: true }*/);
+    super(canvas, { antialias: true });
+  }
 
+  public begin(gameManager: typeof GameManager) {
+    console.log("BEGINNING GAME");
     window.addEventListener("resize", () => this.resize());
     this.onDisposeObservable.add(() => console.log("DISPOSING GAME"));
     const scene = this.createScene(gameManager);

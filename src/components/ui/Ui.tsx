@@ -6,13 +6,14 @@ import "./ui.css";
 import React from "react";
 
 const Ui: React.FC = () => {
-  const { setGame, game } = useGameContext();
+  const { game } = useGameContext();
   return (
     <div className="ui">
       <div className="bit-container menu">
         <div
           className="bit-button"
           onClick={() => {
+            console.log(game);
             if (game) {
               const node = game.activeScene.getNodeByName(
                 "default_gamemanager"

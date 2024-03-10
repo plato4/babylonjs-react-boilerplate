@@ -10,6 +10,7 @@ export class Rotate extends Component<BABYLON.TransformNode> {
   }
 
   public toggle(): void {
+    console.log("toggled");
     this.enabled = !this.enabled;
   }
 
