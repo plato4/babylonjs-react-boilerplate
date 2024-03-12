@@ -1,7 +1,7 @@
 import { IModel } from "../engine/Model";
 
 export const modelBlock: IModel = {
-  folderPath: "/",
+  folderPath: "/assets/models/",
   fileName: "cube.gltf",
 };
 
