@@ -6,8 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>A BabylonJS ReactJS Game</title>
 		<script>
-			const path = require('path');
-			const __dirname = path.resolve(path.dirname(''));
+			if (typeof window === 'undefined')
+			{
+				const path = require('path');
+				const __dirname = path.resolve(path.dirname(''));
+			}
 		</script>
 	</head>
 	<body>
