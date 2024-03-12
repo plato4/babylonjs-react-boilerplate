@@ -6,7 +6,7 @@ import { Rotate } from "./Rotate";
 import { createPrefabAsync } from "../../engine/Prefab";
 import { GameManager } from "../../engine/GameManager";
 import { prefabs } from "../Prefabs";
-import HavokPhysics, { HavokPhysicsWithBindings } from "@babylonjs/havok";
+import { HavokPhysicsWithBindings } from "@babylonjs/havok";
 
 export class MyGameManager extends GameManager {
   public game: Game;
