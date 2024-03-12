@@ -28,12 +28,10 @@ export class MyGameManager extends GameManager {
   }
 
   public onStart(): void {
-    this.game
-      .createHavok(this.node.getScene(), BABYLON.Vector3.Zero())
-      .then((v) => {
-        this.havokInstance = v.havokInstance;
-        this.havokPlugin = v.havokPlugin;
-      });
+    Game.createHavok(this.node.getScene(), BABYLON.Vector3.Zero()).then((v) => {
+      this.havokInstance = v.havokInstance;
+      this.havokPlugin = v.havokPlugin;
+    });
     createPrefabAsync(this.node, prefabs.cube).then((n) => (this.cube = n));
   }
   public onUpdate(): void {}
