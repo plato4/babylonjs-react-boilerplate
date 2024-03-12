@@ -6,11 +6,17 @@ import { Rotate } from "./Rotate";
 import { createPrefabAsync } from "../../engine/Prefab";
 import { GameManager } from "../../engine/GameManager";
 import { prefabs } from "../Prefabs";
+import HavokPhysics, { HavokPhysicsWithBindings } from "@babylonjs/havok";
 
 export class MyGameManager extends GameManager {
+  public game: Game;
   public cube?: BABYLON.TransformNode;
+  public havokInstance?: HavokPhysicsWithBindings;
+  public havokPlugin?: BABYLON.HavokPlugin;
+
   constructor(game: Game, node: BABYLON.TransformNode) {
     super(game, node);
+    this.game = game;
   }
 
   public toggleRotation(): void {
@@ -22,6 +28,12 @@ export class MyGameManager extends GameManager {
   }
 
   public onStart(): void {
+    this.game
+      .createHavok(this.node.getScene(), BABYLON.Vector3.Zero())
+      .then((v) => {
+        this.havokInstance = v.havokInstance;
+        this.havokPlugin = v.havokPlugin;
+      });
     createPrefabAsync(this.node, prefabs.cube).then((n) => (this.cube = n));
   }
   public onUpdate(): void {}
