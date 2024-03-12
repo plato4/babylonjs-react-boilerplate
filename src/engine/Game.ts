@@ -95,7 +95,7 @@ export class Game extends BABYLON.WebGPUEngine {
     new gameManager(this, node);
   }
 
-  public async createHavok(
+  public static async createHavok(
     scene: BABYLON.Scene,
     gavity: BABYLON.Vector3
   ): Promise<{
