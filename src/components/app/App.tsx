@@ -4,8 +4,8 @@ import "../../css/bit.css";
 import { createContext, useContext, useState } from "react";
 import React from "react";
 
-import GameCanvas from "../gamecanvas/GameCanvas";
-import Ui from "../ui/Ui";
+import { GameCanvas } from "../gamecanvas/GameCanvas";
+import { Ui } from "../ui/Ui";
 
 import { Game } from "../../engine/Game";
 
@@ -25,7 +25,7 @@ export const GameContext = createContext<GameContextType>({
 // eslint-disable-next-line react-refresh/only-export-components
 export const useGameContext = () => useContext(GameContext);
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [game, setGame] = useState<Game>();
   const [started, setStarted] = useState(false);
   return (
@@ -49,5 +49,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;

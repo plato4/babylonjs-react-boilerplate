@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as BABYLON from "babylonjs";
-import Component from "../../engine/Component";
+import { Component } from "../../engine/Component";
 import { Game } from "../../engine/Game";
 import { Rotate } from "./Rotate";
 import { createPrefabAsync } from "../../engine/Prefab";

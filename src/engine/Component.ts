@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as BABYLON from "babylonjs";
 
-export default class Component<T extends BABYLON.Node> {
+export class Component<T extends BABYLON.Node> {
   public readonly node: T;
   private startObservable!: BABYLON.Nullable<BABYLON.Observer<BABYLON.Scene>>;
   private updateObservable!: BABYLON.Nullable<BABYLON.Observer<BABYLON.Scene>>;

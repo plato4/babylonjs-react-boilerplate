@@ -1,11 +1,11 @@
-import Component from "../../engine/Component";
+import { Component } from "../../engine/Component";
 import { MyGameManager } from "../../game/components/GameManager";
 import { useGameContext } from "../app/App";
 import "./ui.css";
 
 import React from "react";
 
-const Ui: React.FC = () => {
+export const Ui: React.FC = () => {
   const { game } = useGameContext();
   return (
     <div className="ui">
@@ -34,5 +34,3 @@ const Ui: React.FC = () => {
     </div>
   );
 };
-
-export default Ui;

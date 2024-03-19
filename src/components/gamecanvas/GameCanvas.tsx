@@ -3,7 +3,7 @@ import { useGameContext } from "../app/App";
 import { createGame } from "../../game/Game";
 import { Game } from "../../engine/Game";
 
-const GameCanvas: React.FC = () => {
+export const GameCanvas: React.FC = () => {
   const { setGame } = useGameContext();
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -19,5 +19,3 @@ const GameCanvas: React.FC = () => {
   }, [setGame]);
   return <canvas ref={canvas} style={{ width: "100%", height: "100%" }} />;
 };
-
-export default GameCanvas;
