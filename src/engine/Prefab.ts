@@ -63,7 +63,13 @@ const createPrefab = async (
   if (parent instanceof BABYLON.TransformNode) root.parent = parent;
   root.name = prefab.name;
   root.position = prefab.position ?? BABYLON.Vector3.Zero();
-  root.rotation = prefab.rotation ?? BABYLON.Vector3.Zero();
+  root.rotation = prefab.rotation
+    ? new BABYLON.Vector3(
+        BABYLON.Tools.ToRadians(prefab.rotation.x),
+        BABYLON.Tools.ToRadians(prefab.rotation.y),
+        BABYLON.Tools.ToRadians(prefab.rotation.z)
+      )
+    : BABYLON.Vector3.Zero();
   root.scaling = prefab.scale ?? BABYLON.Vector3.One();
 
   if (prefab.children && root instanceof BABYLON.TransformNode) {
