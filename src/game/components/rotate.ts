@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as BABYLON from "babylonjs";
-import { Component } from "../../engine/Component";
+import { Component } from "../../engine/src/component";
 
 export class Rotate extends Component<BABYLON.TransformNode> {
   public enabled = true;

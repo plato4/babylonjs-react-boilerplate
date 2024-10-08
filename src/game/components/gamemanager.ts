@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as BABYLON from "babylonjs";
-import { Component } from "../../engine/Component";
-import { Game } from "../../engine/Game";
-import { Rotate } from "./Rotate";
-import { createPrefabAsync } from "../../engine/Prefab";
-import { GameManager } from "../../engine/GameManager";
-import { prefabs } from "../Prefabs";
+import { Rotate } from "./rotate";
+import { prefabs } from "../prefabs";
+import { GameManager } from "../../engine/src/gamemanager";
+import { Game } from "../../engine/src/game";
+import { Component } from "../../engine/src/component";
+import { createPrefabAsync } from "../../engine/src/prefab";
 
 export class MyGameManager extends GameManager {
   public game: Game;

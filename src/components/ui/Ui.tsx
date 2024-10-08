@@ -1,5 +1,5 @@
-import { Component } from "../../engine/Component";
-import { MyGameManager } from "../../game/components/GameManager";
+import { Component } from "../../engine/src/component";
+import { MyGameManager } from "../../game/components/gamemanager";
 import { useGameContext } from "../app/App";
 import "./ui.css";
 

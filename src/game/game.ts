@@ -1,5 +1,5 @@
-import { Game } from "../engine/Game";
-import { MyGameManager } from "./components/GameManager";
+import { Game } from "../engine/src/game";
+import { MyGameManager } from "./components/gamemanager";
 
 export const createGame = (canvas: HTMLCanvasElement): Game => {
   return new Game(canvas, MyGameManager);

@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
+import { createGame } from "../../game/game";
 import { useGameContext } from "../app/App";
-import { createGame } from "../../game/Game";
+
 
 export const GameCanvas: React.FC = () => {
   const { setGame } = useGameContext();
